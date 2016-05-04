@@ -2,8 +2,8 @@
 
 namespace app;
 
-require './Country.php';
-require './State.php';
+require 'Country.php';
+require 'State.php';
 
 /**
  * Description of CountryRepository
