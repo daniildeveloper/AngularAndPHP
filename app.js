@@ -5,14 +5,20 @@
      */
     var app = angular.module('funWithCountries', []);
 
-    app.controller("CountryController", function ($http) {
+    app.factory('countryService', function ($http) {
+        var baseUrl = "services/";
+        return {
+            getCountries: function () {
+                return $http.get(baseUrl + "getCountries.php");
+            }
+        };
+    });
+
+    app.controller("CountryController", function (countryService) {
 
         var that = this;
 
-        $http({
-            method: "GET",
-            url: "services/getCountries.php"
-        }).success(function (data) {
+        countryService.getCountries().success(function (data) {
             that.countries = data;
         });
     });
