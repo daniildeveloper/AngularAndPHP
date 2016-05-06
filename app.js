@@ -23,6 +23,10 @@
         });
 
         this.newState = "";
+
+    });
+
+    app.controller("StateController", function () {
         this.addStateTo = function (country) {
             if (!country.states) {
                 country.states = [];
