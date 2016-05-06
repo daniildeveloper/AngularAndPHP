@@ -25,6 +25,8 @@
                             {{ c.name }}
                         </li>
                     </ul>
+                    <input type="text" name="state" ng-model="countryCtrl.newState">
+                    <a href ng-click="countryCtrl.addStateTo(c)"> Add state {{ countryCtrl.newState }}</a>
                 </li>
             </ul>
         </div>
