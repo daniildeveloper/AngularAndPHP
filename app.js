@@ -27,14 +27,29 @@
     });
 
     app.controller("StateController", function () {
-        this.addStateTo = function (country) {
-            if (!country.states) {
-                country.states = [];
-            }
-            country.states.push({
-                name: this.newState
-            });
-            this.newState = "";
+
+    });
+
+    /**
+     * can be used as <state-view></state-view>
+     */
+    app.directive("stateView", function () {
+        return{
+            restrict: "E", //todo: what is it
+            templateUrl: "state-view.html",
+            controller: function () {
+                this.addStateTo = function (country) {
+                    if (!country.states) {
+                        country.states = [];
+                    }
+                    country.states.push({
+                        name: this.newState
+                    });
+                    this.newState = "";
+                };
+
+            },
+            controllerAs: "stateCtrl"
         };
     });
 

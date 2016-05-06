@@ -20,16 +20,9 @@
                 <li ng-repeat="c in countryCtrl.countries">
                     <img ng-src="images/{{ c.code }}.png">
                     {{ c.name }}
-                    <div ng-controller="StateController as stateCtrl">
-                        <ul ng-show="c.states.length > 0">
-                            <li ng-repeat="c in c.states">
-                                {{ c.name }}
-                            </li>
-                        </ul>
-                        <input type="text" name="state" ng-model="stateCtrl.newState">
-                        <a href ng-click="stateCtrl.addStateTo(c)"> Add state {{ stateCtrl.newState }}</a>
-                    </div>
-                </li>
+
+                <state-view></state-view>
+            </li>
             </ul>
         </div>
 
