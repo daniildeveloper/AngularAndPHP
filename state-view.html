@@ -1,9 +1,12 @@
 <div >
-    <ul ng-show="c.states.length > 0">
-        <li ng-repeat="c in c.states">
+    <b>{{ stateCtrl.params.countryCode}}</b>
+    <ul ng-show="stateCtrl.states.length > 0">
+        <li ng-repeat="c in stateCtrl.states">
             {{ c.name}}
         </li>
     </ul>
     <input type="text" name="state" ng-model="stateCtrl.newState">
-    <a href ng-click="stateCtrl.addStateTo(c)"> Add state {{ stateCtrl.newState}}</a>
+
+    <a href ng-click="stateCtrl.addStateTo()"> Add state {{ stateCtrl.newState}}</a>
+    <p><a href="#/">back</a></p>
 </div>

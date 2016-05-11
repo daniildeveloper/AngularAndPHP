@@ -3,13 +3,18 @@
      * angular module
      * @type angular.module.angular-1_3_6_L1749.moduleInstance
      */
-    var app = angular.module('funWithCountries', []);
+    var app = angular.module('funWithCountries', ["ngRoute"]);
 
     app.factory('countryService', function ($http) {
         var baseUrl = "services/";
         return {
             getCountries: function () {
                 return $http.get(baseUrl + "getCountries.php");
+            },
+            getStates: function (countryCode) {
+                return $http.get(baseUrl +
+                        "getStates.php/?countrycode=" +
+                        encodeURIComponent()(countryCode));
             }
         };
     });
@@ -24,6 +29,32 @@
 
         this.newState = "";
 
+    });
+
+    app.config(function ($routeProvider) {
+        $routeProvider.when("/states/:countryCode", {
+            templateUrl: "state-view.html",
+            controller: function ($routeParams, countryService) {
+                this.params = $routeParams;
+
+                var that = this;
+
+                countryService.getStates(this.params.countryCode || "")
+                        .success(function (data) {
+                            this.states = data;
+                        });
+
+                this.addStateTo = function () {
+                    if (!this.states) {
+                        this.states = [];
+                    }
+                    this.states.push({
+                        name: this.newState
+                    });
+                };
+            },
+            controllerAs: "stateCtrl"
+        });
     });
 
     app.controller("StateController", function () {
